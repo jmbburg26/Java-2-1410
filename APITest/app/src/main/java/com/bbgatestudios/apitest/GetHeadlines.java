@@ -24,7 +24,7 @@ public class GetHeadlines extends IntentService {
     public static final String MEESSENGER_KEY = "messenger";
     public String headlines;
     public HttpURLConnection con;
-    HeadlineManager m_file;
+    HeadlinesManager m_file;
     String filename = "headlinesFile";
 
 
@@ -36,7 +36,7 @@ public class GetHeadlines extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        m_file = HeadlineManager.getInstance();
+        m_file = HeadlinesManager.getInstance();
         Log.i("HeadlinesHandler", "started");
 
         Bundle extras = intent.getExtras();
@@ -73,7 +73,7 @@ public class GetHeadlines extends IntentService {
                 Log.i("SERVICE", "headlines data 1-> "+ headlines);
 
                 //write received data to file
-                HeadlineManager m_file = HeadlineManager.getInstance();
+                HeadlinesManager m_file = HeadlinesManager.getInstance();
 
                 m_file.writeHeadlinesToFile(this, filename, headlines);
             }

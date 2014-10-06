@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <service android:name="GetHeadlines"></service>
-        <service android:name=".HeadlineManager"></service>
+        <service android:name=".HeadlinesManager"></service>
     </application>
 
 </manifest>

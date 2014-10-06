@@ -11,12 +11,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bbgatestudios.apitest.data.Headline;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,10 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class MainActivity extends Activity implements HeadlineListFragment.Callbacks {
-
-    public static final String HEADLINE_BUNDLE = "HEADLINE_BUNDLE";
-    private static final int REQUEST_CODE = 1001;
+public class MainActivity extends Activity {
 
     static ListView listview;
     static Context context;
@@ -52,6 +48,10 @@ public class MainActivity extends Activity implements HeadlineListFragment.Callb
         setContentView(R.layout.activity_main);
         context = this;
 
+        listview = (ListView)this.findViewById(R.id.list);
+        View listHeader = this.getLayoutInflater().inflate(R.layout.listview_header, null);
+        listview.addHeaderView(listHeader);
+
         HeadlinesManager headlinesMgr = new HeadlinesManager();
         headlinesMgr.execute("football");
     }
@@ -60,7 +60,7 @@ public class MainActivity extends Activity implements HeadlineListFragment.Callb
     public static void displayData(ArrayList<HashMap<String, String>> myList)
     {
 
-        SimpleAdapter adapter = new SimpleAdapter(context, myList, R.layout.headline_listitem, new String[] {"headline", "description", "published"}, new int[] {R.id.headline, R.id.description, R.id.published});
+        SimpleAdapter adapter = new SimpleAdapter(context, myList, R.layout.list_rows, new String[] {"headline", "description", "published"}, new int[] {R.id.headline, R.id.description, R.id.published});
         listview.setAdapter(adapter);
 
     }
@@ -93,26 +93,10 @@ public class MainActivity extends Activity implements HeadlineListFragment.Callb
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings){
-
-            ScreenUtility utility = new ScreenUtility(this);
-            String output = "Width: " + utility.getWidth() + ", " + "Height: " + utility.getHeight();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(output)
-                    .setTitle("Dimensions")
-                    .create()
-                    .show();
+        if (id == R.id.action_settings) {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onItemSelected(Headline myForms) {
-        Bundle b = myForms.toBundle();
-        Intent intent = new Intent(this, HeadlineDetailActivity.class);
-        intent.putExtra(HEADLINE_BUNDLE, b);
-        startActivityForResult(intent, REQUEST_CODE);
     }
 
     public class HeadlinesManager extends AsyncTask<String, Void, String> {
@@ -123,6 +107,13 @@ public class MainActivity extends Activity implements HeadlineListFragment.Callb
         private HeadlinesManager() {
 
         }
+
+//		public HeadlinesManager getInstance(){
+//			if (m_instance == null) {
+//				m_instance = new HeadlinesManager();
+//			}
+//			return m_instance;
+//		}
 
         public Boolean writeHeadlinesToFile(Context context, String filename, String content ){
             Boolean result =  null;
@@ -191,6 +182,11 @@ public class MainActivity extends Activity implements HeadlineListFragment.Callb
                 newUrl = new URL("http://api.espn.com/v1/now?limit=15&apikey=e3qvjg8m43xx4xmcyqperf3a");
                 con = (HttpURLConnection) newUrl.openConnection();
 
+////				File file = new File("headlines");
+////				FileInputStream fin = new FileInputStream(file);
+////				InputStreamReader inReader = new InputStreamReader(fin.);
+//				BufferedReader reader = new BufferedReader(inReader);
+
                 BufferedReader reader = null;
                 reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
@@ -204,6 +200,15 @@ public class MainActivity extends Activity implements HeadlineListFragment.Callb
                 }
                 // Close the reader and underlying stream.
                 reader.close();
+
+
+//				BufferedReader reader = null;
+//				reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+//
+//				while ((headlines = reader.readLine()) != null) {
+//					Log.i("SERVICE", "headlines data 1-> "+ headlines);
+//
+//				}
 //
             } catch (Exception e) {
                 // TODO Auto-generated catch block
@@ -217,8 +222,6 @@ public class MainActivity extends Activity implements HeadlineListFragment.Callb
 
         @Override
         protected void onPostExecute(String result) {
-
-            HeadlineArrayAdapter adapter;
             ArrayList<HashMap<String, String>> myList = new ArrayList<HashMap<String, String>>();
             JSONObject news = null;
             JSONArray feed = null;
@@ -227,6 +230,7 @@ public class MainActivity extends Activity implements HeadlineListFragment.Callb
                 news = new JSONObject(result);
                 feed = news.getJSONArray("feed");
                 int feedSize = feed.length();
+                //textMessage.setText("There are" + String.valueOf(feedSize) + "headlines.");
 
                 for (int i = 0; i < feedSize; i++)
                 {
