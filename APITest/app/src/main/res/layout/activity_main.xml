@@ -1,14 +1,15 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
- 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="#ffffff"
-        android:drawSelectorOnTop="false" />
-    
-</LinearLayout>
+
+    <fragment
+        android:id="@+id/my_fragment"
+        android:name="com.bbgatestudios.apitest.MyFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:layout="@layout/my_fragment" />
+
+</FrameLayout>

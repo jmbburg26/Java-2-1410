@@ -108,13 +108,6 @@ public class MainActivity extends Activity {
 
         }
 
-//		public HeadlinesManager getInstance(){
-//			if (m_instance == null) {
-//				m_instance = new HeadlinesManager();
-//			}
-//			return m_instance;
-//		}
-
         public Boolean writeHeadlinesToFile(Context context, String filename, String content ){
             Boolean result =  null;
             FileOutputStream fos = null;
@@ -201,15 +194,6 @@ public class MainActivity extends Activity {
                 // Close the reader and underlying stream.
                 reader.close();
 
-
-//				BufferedReader reader = null;
-//				reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-//
-//				while ((headlines = reader.readLine()) != null) {
-//					Log.i("SERVICE", "headlines data 1-> "+ headlines);
-//
-//				}
-//
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -230,7 +214,6 @@ public class MainActivity extends Activity {
                 news = new JSONObject(result);
                 feed = news.getJSONArray("feed");
                 int feedSize = feed.length();
-                //textMessage.setText("There are" + String.valueOf(feedSize) + "headlines.");
 
                 for (int i = 0; i < feedSize; i++)
                 {
