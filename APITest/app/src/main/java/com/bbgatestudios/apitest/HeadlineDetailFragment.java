@@ -25,7 +25,7 @@ public class HeadlineDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Bundle b = getArguments();
-        if (b != null && b.containsKey(Headline.STORY_DESCRIPTION)){
+        if (b != null && b.containsKey(Headline.STORY_TITLE)){
             headline = new Headline(b);
         }
     }
@@ -39,17 +39,14 @@ public class HeadlineDetailFragment extends Fragment {
         if (headline != null) {
 
             //Display values and image
-            TextView tvTitle = (TextView) view.findViewById(R.id.tvFirstName);
+            TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
             tvTitle.setText(headline.getStoryTitle());
 
-            TextView tvDescription = (TextView) view.findViewById(R.id.tvLastName);
+            TextView tvDescription = (TextView) view.findViewById(R.id.tvDescription);
             tvDescription.setText(headline.getStoryDescription());
 
-            TextView tvPublished = (TextView) view.findViewById(R.id.tvEmail);
+            TextView tvPublished = (TextView) view.findViewById(R.id.tvPublished);
             tvPublished.setText(headline.getStoryPublished());
-
-            ImageView ivPicture = (ImageView) view.findViewById(R.id.ivImage);
-            ivPicture.setImageResource(headline.getStoryImage());
 
         }
 

@@ -33,12 +33,15 @@ public class HeadlineArrayAdapter extends ArrayAdapter {
                 (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
         View view = inflater.inflate(R.layout.headline_listitem, null);
-        TextView tv1 = (TextView) view.findViewById(R.id.headline);
-        tv1.setText(headline.getStoryTitle());
 
-        TextView tv2 = (TextView) view.findViewById(R.id.description);
+        TextView tv = (TextView) view.findViewById(R.id.headline_title);
+        tv.setText(headline.getStoryTitle());
 
-        tv2.setText(headline.getStoryTitle());
+        TextView tv2 = (TextView) view.findViewById(R.id.headline_description);
+        tv2.setText(headline.getStoryDescription());
+
+        TextView tv3 = (TextView) view.findViewById(R.id.headline_published);
+        tv3.setText(headline.getStoryPublished());
 
         return view;
     }

@@ -11,5 +11,4 @@
         android:divider="#ffffff"
         android:drawSelectorOnTop="false" />
 
-    
 </FrameLayout>

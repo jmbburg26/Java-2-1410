@@ -16,6 +16,9 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bbgatestudios.apitest.data.Headline;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,6 +40,9 @@ public class MainActivity extends Activity {
 
     static ListView listview;
     static Context context;
+
+    public static final String HEADLINE_BUNDLE = "HEADLINE_BUNDLE";
+    private static final int REQUEST_CODE = 1001;
 
 
     @Override
@@ -82,16 +88,12 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
@@ -175,11 +177,6 @@ public class MainActivity extends Activity {
                 newUrl = new URL("http://api.espn.com/v1/now?limit=15&apikey=e3qvjg8m43xx4xmcyqperf3a");
                 con = (HttpURLConnection) newUrl.openConnection();
 
-////				File file = new File("headlines");
-////				FileInputStream fin = new FileInputStream(file);
-////				InputStreamReader inReader = new InputStreamReader(fin.);
-//				BufferedReader reader = new BufferedReader(inReader);
-
                 BufferedReader reader = null;
                 reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
@@ -230,8 +227,6 @@ public class MainActivity extends Activity {
 
                     myList.add(newsMap);
                 }
-
-
                 displayData(myList);
 
             }catch (JSONException e){

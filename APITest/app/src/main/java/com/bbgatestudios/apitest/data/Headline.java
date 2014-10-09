@@ -2,24 +2,19 @@ package com.bbgatestudios.apitest.data;
 
 import android.os.Bundle;
 
-
 /**
- * Created by John on 9/17/2014.
+ * Created by John on 10/7/2014.
  */
 public class Headline {
-
-
     //Constants
     public static final String STORY_TITLE = "storyTitle";
     public static final String STORY_DESCRIPTION = "storyDescription";
-    public static final String STORY_PUBLISHED = "storyPublished";
-    public static final String STORY_IMAGE = "storyImage";
+    public static final String STORY_PUBLISHED= "storyPublished";
 
     //Private
     private String storyTitle;
     private String storyDescription;
     private String storyPublished;
-    private int storyImage;
 
     public String getStoryTitle() {
         return storyTitle;
@@ -45,27 +40,17 @@ public class Headline {
         this.storyPublished = storyPublished;
     }
 
-    public int getStoryImage() {
-        return storyImage;
-    }
-
-    public void setStoryImage(int storyImage) {
-        this.storyImage = storyImage;
-    }
-
     //	Used when creating the data object
-    public Headline(String id, int imageResource, String lastname, String useremail) {
+    public Headline(String id, String storyDescription, String storyPublished) {
         this.storyTitle = id;
-        this.storyImage = imageResource;
-        this.storyDescription = lastname;
-        this.storyPublished = useremail;
+        this.storyDescription = storyDescription;
+        this.storyPublished = storyPublished;
     }
 
     //	Create from a bundle
     public Headline(Bundle b) {
         if (b != null) {
             this.storyTitle = b.getString(STORY_TITLE);
-            this.storyImage = b.getInt(STORY_IMAGE);
             this.storyDescription = b.getString(STORY_DESCRIPTION);
             this.storyPublished = b.getString(STORY_PUBLISHED);
         }
@@ -75,17 +60,14 @@ public class Headline {
     public Bundle toBundle() {
         Bundle b = new Bundle();
         b.putString(STORY_TITLE, this.storyTitle);
-        b.putInt(STORY_IMAGE, this.storyImage);
         b.putString(STORY_DESCRIPTION, this.storyDescription);
         b.putString(STORY_PUBLISHED, this.storyPublished);
         return b;
     }
 
-    //	Output flower data
+    //	Output headline data
     @Override
     public String toString() {
         return storyTitle;
     }
-
-
 }

@@ -6,24 +6,30 @@
     android:paddingBottom="10dp">
 
     <TextView
-        android:id="@+id/headline"
-        android:layout_weight="1"
-        android:paddingLeft="5dp"
-        android:layout_height="wrap_content"
-        android:layout_width="0dp" />
+        android:id="@+id/headline_title"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:contentDescription="placeholder"/>
 
     <TextView
-        android:id="@+id/description"
-        android:layout_weight="1"
-        android:paddingLeft="5dp"
+        android:id="@+id/headline_description"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="0dp" />
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/headline_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
-        android:id="@+id/published"
-        android:layout_weight="1"
-        android:paddingLeft="5dp"
+        android:id="@+id/headline_published"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="0dp" />
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/headline_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
 </RelativeLayout>
