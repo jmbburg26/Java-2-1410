@@ -65,7 +65,6 @@ public class MainActivity extends Activity {
 
     public static void displayData(ArrayList<HashMap<String, String>> myList)
     {
-
         SimpleAdapter adapter = new SimpleAdapter(context, myList, R.layout.list_rows, new String[] {"headline", "description", "published"}, new int[] {R.id.headline, R.id.description, R.id.published});
         listview.setAdapter(adapter);
 
@@ -95,7 +94,15 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings){
+
+            ScreenUtility utility = new ScreenUtility(this);
+            String output = "Width: " + utility.getWidth() + ", " + "Height: " + utility.getHeight();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(output)
+                    .setTitle("Dimensions")
+                    .create()
+                    .show();
             return true;
         }
         return super.onOptionsItemSelected(item);

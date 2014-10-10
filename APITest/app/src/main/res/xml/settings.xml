@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    <Preference
-        android:key="PREF_CLICK"
-        android:summary="A clickable preference item."
-        android:title="Click Preference" />
+    <PreferenceCategory android:title="Demo Preferences" >
+
+        <Preference
+            android:key="PREF_CLICK"
+            android:summary="A clickable preference item."
+            android:title="Click Preference" />
+
+        <ListPreference
+            android:key="PREF_LIST"
+            android:summary="A preference that shows a list of values"
+            android:title="List Preference"
+            android:defaultValue="Item 1" />
+
+        <CheckBoxPreference
+            android:key="PREF_CHECK"
+            android:summary="Use local cache for data"
+            android:title="Offline data"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
 </PreferenceScreen>
