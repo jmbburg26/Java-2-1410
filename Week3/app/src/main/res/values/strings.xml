@@ -8,5 +8,12 @@
     <string name="lnametext">Last Name</string>
     <string name="emailtext">Email</string>
     <string name="phonetext">Phone</string>
+    <string name="form_fname">First</string>
+    <string name="hint_fname">John</string>
+    <string name="form_lname">Last</string>
+    <string name="hint_lname">Smith</string>
+    <string name="form_email">Email</string>
+    <string name="hint_email">me@mail.com</string>
+    <string name="button_save">Save Contact</string>
 
 </resources>
