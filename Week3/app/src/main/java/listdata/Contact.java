@@ -38,5 +38,4 @@ public class Contact implements Serializable {
 
     public String getPhone(){ return mPhone; }
     public void setPhone(String mPhone){ this.mPhone = mPhone; }
-
 }

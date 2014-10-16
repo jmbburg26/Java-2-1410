@@ -8,4 +8,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/contactName"
         android:padding="10dp" />
+
 </LinearLayout>

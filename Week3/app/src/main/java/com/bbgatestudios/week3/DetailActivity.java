@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import fragment.DetailFragment;
 import listdata.Contact;
@@ -72,9 +73,17 @@ public class DetailActivity extends Activity implements DetailFragment.DetailLis
                 break;
 
             case R.id.contactButton:
-                deleteContact();
+                implicitSendEmail();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void implicitSendEmail(){
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, "Put your email text here.");
+        intent.setType("text/plain");
+        startActivity(intent);
     }
 }

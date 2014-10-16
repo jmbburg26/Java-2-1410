@@ -33,7 +33,9 @@ public class MainFragment extends Fragment{
         public ArrayList<Contact> getContacts();
     }
 
-    public MainFragment(){};
+    public MainFragment(){
+
+    }
 
     @Override
     public void onAttach(Activity activity){
@@ -53,10 +55,10 @@ public class MainFragment extends Fragment{
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState){
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ListView contactListView = (ListView) getView().findViewById(R.id.contactlist);
+        ListView contactListView = (ListView) getView().findViewById(R.id.contactList);
         ContactAdapter contactAdapter = new ContactAdapter(getActivity(), mListener.getContacts());
         contactListView.setAdapter(contactAdapter);
 
@@ -77,7 +79,7 @@ public class MainFragment extends Fragment{
     }
 
     public void updateListData(){
-        ListView contactList = (ListView) getView().findViewById(R.id.contactlist);
+        ListView contactList = (ListView) getView().findViewById(R.id.contactList);
         BaseAdapter contactAdapter = (BaseAdapter) contactList.getAdapter();
         contactAdapter.notifyDataSetChanged();
     }

@@ -1,13 +1,20 @@
 package com.bbgatestudios.week3;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.bbgatestudios.week3.DetailActivity;
+import com.bbgatestudios.week3.FormActivity;
+import com.bbgatestudios.week3.R;
 
 import java.util.ArrayList;
 
@@ -24,15 +31,14 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
     public static final int ADD_REQUESTCODE = 1001;
 
     private ArrayList<Contact> mContactDataList;
-    Button addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new Fragment())
+                    .add(R.id.container, new MainFragment())
                     .commit();
         }
 
@@ -63,8 +69,8 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if (resultCode == Activity.RESULT_OK && requestCode == DELETEREQUEST){
-            mContactDataList.remove(data.getIntExtra(DELETECONTACTEXTRA, 0));
+        if(resultCode == Activity.RESULT_OK && requestCode == DELETEREQUEST){
+            mContactDataList.remove(data.getIntExtra(DELETECONTACTEXTRA,0));
             MainFragment mf = (MainFragment) getFragmentManager().findFragmentById(R.id.container);
             mf.updateListData();
         }
