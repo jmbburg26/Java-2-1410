@@ -52,9 +52,12 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){
+            case R.id.action_settings_add:
+                //Use explicit intent to bring up the input form
+                Intent intent = new Intent(this, FormActivity.class);
+                startActivityForResult(intent, ADD_REQUESTCODE);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -85,12 +88,5 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
     @Override
     public ArrayList<Contact>getContacts(){
         return mContactDataList;
-    }
-
-    public void gotoActivity(View v){
-
-        //Use explicit intent to bring up the input form
-        Intent intent = new Intent(this, FormActivity.class);
-        startActivityForResult(intent, ADD_REQUESTCODE);
     }
 }

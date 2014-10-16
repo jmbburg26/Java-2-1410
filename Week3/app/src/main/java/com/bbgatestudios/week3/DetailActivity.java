@@ -3,6 +3,8 @@ package com.bbgatestudios.week3;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import fragment.DetailFragment;
 import listdata.Contact;
@@ -53,5 +55,26 @@ public class DetailActivity extends Activity implements DetailFragment.DetailLis
         returnIntent.putExtra(MainActivity.DELETECONTACTEXTRA, mDelete);
         setResult(RESULT_OK, returnIntent);
         finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.detail_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.deleteButton:
+                deleteContact();
+                break;
+
+            case R.id.contactButton:
+                deleteContact();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

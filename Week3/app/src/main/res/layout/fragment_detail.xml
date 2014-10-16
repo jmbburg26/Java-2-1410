@@ -53,16 +53,4 @@
                 android:id="@+id/detailPhone"/>
         </TableRow>
     </TableLayout>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/contactButton"
-        android:text="Contact" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/deleteButton"
-        android:text="Delete Contact"
-        android:visibility="invisible"/>
 </LinearLayout>
