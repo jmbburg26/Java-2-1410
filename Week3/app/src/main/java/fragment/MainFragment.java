@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -59,13 +60,19 @@ public class MainFragment extends Fragment{
         ContactAdapter contactAdapter = new ContactAdapter(getActivity(), mListener.getContacts());
         contactListView.setAdapter(contactAdapter);
 
-        contactListView.setOnItemClickListener((parent, view, position, id) -> {
-            mListener.viewContact(position);
+        contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mListener.viewContact(position);
+            }
         });
 
-        contactListView.setOnItemLongClickListener((parent, view, position, id) -> {
-            mListener.deleteContact(position);
-            return true;
+        contactListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                mListener.deleteContact(position);
+                return true;
+            }
         });
     }
 

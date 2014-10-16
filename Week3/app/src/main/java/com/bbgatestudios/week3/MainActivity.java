@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -19,8 +21,10 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
 
     public static final int DELETEREQUEST = 1;
     public static final String DELETECONTACTEXTRA = "com.bbgatestudios.week3.Delete";
+    public static final int ADD_REQUESTCODE = 1001;
 
     private ArrayList<Contact> mContactDataList;
+    Button addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,5 +88,12 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
     @Override
     public ArrayList<Contact>getContacts(){
         return mContactDataList;
+    }
+
+    public void gotoActivity(View v){
+
+        //Use explicit intent to bring up the input form
+        Intent intent = new Intent(this, FormActivity.class);
+        startActivityForResult(intent, ADD_REQUESTCODE);
     }
 }

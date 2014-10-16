@@ -30,7 +30,7 @@ public class FormActivity extends Activity{
        eMail  = (EditText)findViewById(R.id.form_add_email);
 
        sButton.setOnClickListener(
-               new View.OnClickListener()
+                new View.OnClickListener()
                {
                    public void onClick(View view)
                    {

@@ -15,5 +15,6 @@
     <string name="form_email">Email</string>
     <string name="hint_email">me@mail.com</string>
     <string name="button_save">Save Contact</string>
+    <string name="add_button_text">Add Contact</string>
 
 </resources>
