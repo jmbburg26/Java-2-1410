@@ -16,6 +16,9 @@ import com.bbgatestudios.week3.DetailActivity;
 import com.bbgatestudios.week3.FormActivity;
 import com.bbgatestudios.week3.R;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import fragment.MainFragment;
@@ -30,7 +33,7 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
     public static final String DELETECONTACTEXTRA = "com.bbgatestudios.week3.Delete";
     public static final int ADD_REQUESTCODE = 1001;
 
-    private ArrayList<Contact> mContactDataList;
+    public ArrayList<Contact> mContactDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
         mContactDataList.add(new Contact("John", "Brandenburg", "jmbburg26@gmail.com", "619-750-2219"));
         mContactDataList.add(new Contact("Amanda", "Brandenburg", "mrsjmbburg@gmail.com", "619-2458-9854"));
         mContactDataList.add(new Contact("Douglas", "Brandenburg", "papabnsd@gmail.com", "586-350-6021"));
+
     }
 
 
@@ -73,6 +77,19 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
             mContactDataList.remove(data.getIntExtra(DELETECONTACTEXTRA,0));
             MainFragment mf = (MainFragment) getFragmentManager().findFragmentById(R.id.container);
             mf.updateListData();
+        }   else if (resultCode == Activity.RESULT_OK && requestCode == ADD_REQUESTCODE){
+            String first = data.getStringExtra("firstName");
+            String last = data.getStringExtra("lastName");
+            String email = data.getStringExtra("email");
+
+            Log.v("data", first);
+            Log.v("data", last);
+            Log.v("data", email);
+
+            mContactDataList.add(new Contact(first, last, email, "NO NUMBER"));
+
+            MainFragment mf = (MainFragment) getFragmentManager().findFragmentById(R.id.container);
+            mf.updateListData();
         }
     }
 
@@ -95,4 +112,5 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
     public ArrayList<Contact>getContacts(){
         return mContactDataList;
     }
+
 }
