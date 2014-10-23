@@ -82,6 +82,4 @@ public class DetailActivity extends Activity implements DetailFragment.DetailLis
         intent.setType("text/plain");
         startActivity(intent);
     }
-
-
 }

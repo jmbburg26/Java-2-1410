@@ -8,6 +8,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.bbgatestudios.week3.DetailActivity;
+import com.bbgatestudios.week3.FormActivity;
+import com.bbgatestudios.week3.R;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import fragment.MainFragment;
@@ -28,8 +39,6 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new MainFragment())
@@ -77,7 +86,7 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
             Log.v("data", last);
             Log.v("data", email);
 
-            mContactDataList.add(new Contact(first, last, email, "NO NUMBER PROVIDED"));
+            mContactDataList.add(new Contact(first, last, email, "NO NUMBER"));
 
             MainFragment mf = (MainFragment) getFragmentManager().findFragmentById(R.id.container);
             mf.updateListData();
