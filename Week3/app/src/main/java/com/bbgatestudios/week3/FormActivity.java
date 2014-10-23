@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -31,35 +32,37 @@ public class FormActivity extends Activity{
 
        getActionBar().setDisplayHomeAsUpEnabled(true);
 
-       sButton = (Button)findViewById(R.id.button_save_data);
        fName   = (EditText)findViewById(R.id.form_add_fname);
        lName   = (EditText)findViewById(R.id.form_add_lnamne);
        eMail  = (EditText)findViewById(R.id.form_add_email);
-
-       sButton.setOnClickListener(
-            new View.OnClickListener()
-               {
-                   public void onClick(View view)
-                   {
-                       Log.v("EditText", fName.getText().toString());
-                       Log.v("EditText", lName.getText().toString());
-                       Log.v("EditText", eMail.getText().toString());
-
-                       Contact contact = new Contact();
-                       contact.setFirst(fName.getText().toString());
-                       contact.setLast(lName.getText().toString());
-                       contact.setEmail(eMail.getText().toString());
-
-                       addToList(contact);
-                   }
-               });
    }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.form_detail, menu);
+        return true;
+    }
 
-        if (item.getItemId() == android.R.id.home){
-            finish();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.saveButton:
+                Log.v("EditText", fName.getText().toString());
+                Log.v("EditText", lName.getText().toString());
+                Log.v("EditText", eMail.getText().toString());
+
+                Contact contact = new Contact();
+                contact.setFirst(fName.getText().toString());
+                contact.setLast(lName.getText().toString());
+                contact.setEmail(eMail.getText().toString());
+
+                addToList(contact);
+                break;
+            case R.id.cancelButton:
+                    Intent cancelIntent = new Intent (this, MainActivity.class);
+                startActivity(cancelIntent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -72,5 +75,9 @@ public class FormActivity extends Activity{
 
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    public void selfDestruct(View view) {
+        //Cancel the form and return to main view
     }
 }

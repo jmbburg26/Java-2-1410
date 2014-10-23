@@ -18,5 +18,13 @@
     <string name="add_button_text">Add Contact</string>
     <string name="delete_action_button">Delete Contact</string>
     <string name="contact_user">Message</string>
+    <string name="title_section1">Bulldogs</string>
+    <string name="title_section2">Gators</string>
+    <string name="title_section3">Falcons</string>
+    <string name="title_section4">Broncos</string>
+    <string name="title_section5">Buckeyes</string>
+    <string name="title_section6">Nuggets</string>
+    <string name="button_save_user">Save</string>
+    <string name="cancel_button">Cancel</string>
 
 </resources>
