@@ -68,6 +68,10 @@ public class DetailActivity extends Activity implements DetailFragment.DetailLis
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.deleteButton:
+                deleteContact();
+                break;
+
             case R.id.contactButton:
                 implicitSendEmail();
                 break;
@@ -82,4 +86,6 @@ public class DetailActivity extends Activity implements DetailFragment.DetailLis
         intent.setType("text/plain");
         startActivity(intent);
     }
+
+
 }

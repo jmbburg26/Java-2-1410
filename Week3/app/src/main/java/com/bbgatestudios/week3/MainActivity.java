@@ -73,6 +73,19 @@ public class MainActivity extends Activity implements MainFragment.ContactListen
             mContactDataList.remove(data.getIntExtra(DELETECONTACTEXTRA,0));
             MainFragment mf = (MainFragment) getFragmentManager().findFragmentById(R.id.container);
             mf.updateListData();
+        }   else if (resultCode == Activity.RESULT_OK && requestCode == ADD_REQUESTCODE){
+            String first = data.getStringExtra("firstName");
+            String last = data.getStringExtra("lastName");
+            String email = data.getStringExtra("email");
+
+            Log.v("data", first);
+            Log.v("data", last);
+            Log.v("data", email);
+
+            mContactDataList.add(new Contact(first, last, email, "NO NUMBER PROVIDED"));
+
+            MainFragment mf = (MainFragment) getFragmentManager().findFragmentById(R.id.container);
+            mf.updateListData();
         }
     }
 
