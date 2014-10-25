@@ -34,6 +34,8 @@ public class MainFragment extends Fragment{
     private ActionMode mActionMode;
     private ArrayAdapter<Contact> mContactList;
     private int mContactSelected = -1;
+    private static ListView contactListView;
+    private static ContactAdapter contactAdapter;
 
     public interface ContactListener{
         public void viewContact(int position);
@@ -63,24 +65,26 @@ public class MainFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        ListView contactListView = (ListView) getView().findViewById(R.id.contactList);
-        ContactAdapter contactAdapter = new ContactAdapter(getActivity(), mListener.getContacts());
-        contactListView.setAdapter(contactAdapter);
+        return rootView;
+    }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        contactListView = (ListView) getView().findViewById(R.id.contactList);
+        contactAdapter = new ContactAdapter(getActivity(), mListener.getContacts());
+        contactListView.setAdapter(contactAdapter);
         contactListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mActionMode != null){
                     return false;
                 }
-
                 mContactSelected = position;
                 mActionMode = getActivity().startActionMode(mActionModeCallback);
                 return true;
             }
         });
-
-        return rootView;
     }
 
     public void updateListData(){

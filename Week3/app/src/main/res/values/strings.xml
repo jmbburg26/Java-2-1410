@@ -18,5 +18,7 @@
     <string name="add_button_text">Add Contact</string>
     <string name="delete_action_button">Delete Contact</string>
     <string name="contact_user">Message</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="button_save_user">Save</string>
 
 </resources>
